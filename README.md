@@ -110,5 +110,5 @@ CREATE TABLE sensor_data (
 ---
 
 ## Contact
-For any inquiries or support, please contact [your-email@example.com](manansaini.aza.0999.gmail.com).
+For any inquiries or support, please contact [manansaini.aza.0999@gmail.com](manansaini.aza.0999.gmail.com).
 
