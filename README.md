@@ -72,6 +72,7 @@ npm start  # or yarn start
 
 The React application will be available at `http://localhost:3000/` by default.
 
+![Dashboard](sensor-dashboard-frontend/react.png)
 
 
 ---
