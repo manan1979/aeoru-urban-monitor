@@ -80,9 +80,10 @@ The React application will be available at `http://localhost:3000/` by default.
 ### Running the Project Successfully
 Once the backend and frontend are running, ensure that the application is listening properly by running the following command:
 
-sh
-Copy code
+
+```sh 
 nc localhost 9000
+```
 This will check if the backend is accepting connections on port 9000. If the connection is successful, your project is set up correctly and should be functioning as expected.
 ---
 
