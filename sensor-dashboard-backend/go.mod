@@ -5,7 +5,6 @@ go 1.22.4
 require (
 	github.com/go-playground/validator v9.31.0+incompatible
 	github.com/go-sql-driver/mysql v1.9.0
-	github.com/google/uuid v1.6.0
 	github.com/gorilla/websocket v1.5.3
 	github.com/lib/pq v1.10.9
 	github.com/realbucksavage/spring-config-client-go/v2 v2.0.0
