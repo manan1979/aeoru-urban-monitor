@@ -1,7 +1,7 @@
 # Sensor Dashboard
 
 ## Overview
-The **Sensor Dashboard** is a full-stack application that monitors sensor data, such as temperature, AQI (Air Quality Index), and occupancy. The backend is built with **Golang** and utilizes **MySQL** as the database, while the frontend is developed using **React**.
+The **Sensor Dashboard** is a full-stack application that monitors sensor data, such as temperature, AQI (Air Quality Index), and occupancy with reliability score as extra feature that will be calculated on temprature fluctuations and variance. The backend is built with **Golang** and utilizes **MySQL** as the database, while the frontend is developed using **React**.
 
 ---
 
@@ -10,6 +10,7 @@ The **Sensor Dashboard** is a full-stack application that monitors sensor data, 
 📦 sensor-dashboard
 ├── 📂 sensor-dashboard-backend  # Golang Backend
 ├── 📂 sensor-dashboard-frontend # React Frontend
+├── 📄 PROCESS.md.md                 # Project process 
 ├── 📄 README.md                 # Project documentation
 ```
 
@@ -43,7 +44,8 @@ bind:
 # Clone the repository
 git clone https://github.com/yourusername/sensor-dashboard.git
 cd sensor-dashboard/sensor-dashboard-backend
-go mod tidy 
+go mod tidy
+go build -o bin/sensor-dashboard ./cmd
 
 
 # Run the backend service
@@ -75,6 +77,13 @@ The React application will be available at `http://localhost:3000/` by default.
 ![Dashboard](sensor-dashboard-frontend//public/react.png)
 
 
+### Running the Project Successfully
+Once the backend and frontend are running, ensure that the application is listening properly by running the following command:
+
+sh
+Copy code
+nc localhost 9000
+This will check if the backend is accepting connections on port 9000. If the connection is successful, your project is set up correctly and should be functioning as expected.
 ---
 
 ## API Endpoints
