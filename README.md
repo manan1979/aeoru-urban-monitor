@@ -72,6 +72,8 @@ npm start  # or yarn start
 
 The React application will be available at `http://localhost:3000/` by default.
 
+
+
 ---
 
 ## API Endpoints
@@ -87,7 +89,8 @@ CREATE TABLE sensor_data (
     temperature FLOAT NOT NULL,
     aqi INT NOT NULL,
     occupancy INT NOT NULL,
-    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    reliability FLOAT NOT NULL
 );
 ```
 
