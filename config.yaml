@@ -1,0 +1,9 @@
+db:
+  database: sensors
+  username: root
+  password: root
+  hostname: localhost
+  port: 3306
+
+bind:
+  http: 0.0.0.0:9000
