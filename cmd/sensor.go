@@ -20,8 +20,8 @@ type SensorData struct {
 }
 
 var (
-	sensorDataHistory = make(map[int][]float64) // Sensor ID → Temperature readings
-	sensorTimestamps  = make(map[int][]int64)   // Sensor ID → Timestamps of last readings
+	sensorDataHistory = make(map[int][]float64)
+	sensorTimestamps  = make(map[int][]int64)
 	mu                sync.Mutex
 )
 
@@ -78,20 +78,17 @@ func calculateReliability(sensorID int, temperature float64) float64 {
 	mu.Lock()
 	defer mu.Unlock()
 
-	// Store readings (keep only last 10)
 	if len(sensorDataHistory[sensorID]) >= 10 {
 		sensorDataHistory[sensorID] = sensorDataHistory[sensorID][1:]
 	}
 	sensorDataHistory[sensorID] = append(sensorDataHistory[sensorID], temperature)
 
-	// Store timestamps (keep only last 10)
 	currentTimestamp := time.Now().Unix()
 	if len(sensorTimestamps[sensorID]) >= 10 {
 		sensorTimestamps[sensorID] = sensorTimestamps[sensorID][1:]
 	}
 	sensorTimestamps[sensorID] = append(sensorTimestamps[sensorID], currentTimestamp)
 
-	// Compute variance
 	var variance float64
 	if len(sensorDataHistory[sensorID]) > 1 {
 		mean := calculateMean(sensorDataHistory[sensorID])
@@ -102,7 +99,6 @@ func calculateReliability(sensorID int, temperature float64) float64 {
 		variance = sumSquares / float64(len(sensorDataHistory[sensorID]))
 	}
 
-	// Compute update frequency
 	var frequency float64
 	if len(sensorTimestamps[sensorID]) > 1 {
 		timeDiffs := make([]float64, len(sensorTimestamps[sensorID])-1)
@@ -112,17 +108,14 @@ func calculateReliability(sensorID int, temperature float64) float64 {
 		meanTimeDiff := calculateMean(timeDiffs)
 
 		if meanTimeDiff > 0 {
-			frequency = math.Min(1.0/meanTimeDiff, 1) // Ensure frequency is between 0-1
+			frequency = math.Min(1.0/meanTimeDiff, 1)
 		}
 	}
 
-	// Compute reliability score (normalize between 0-100)
-	reliability := 100 - (variance * 2) + (frequency * 50) // Reduce variance impact, increase frequency weight
-
-	// Ensure reliability is within valid range
+	reliability := 100 - (variance * 2) + (frequency * 50)
 	if reliability > 100 {
 		reliability = 100
-	} else if reliability < 10 { // Set a minimum reliability value
+	} else if reliability < 10 {
 		reliability = 10
 	}
 
